@@ -7,18 +7,22 @@ const UserVerification = require("./../models/UserVerification");
 const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
+
 const bcrypt = require("bcrypt");
+
 const path = require("path");
+
 const { error } = require("console");
 
+let AUTH_EMAIL= "dep.p03.2024@gmail.com"
+let AUTH_PASS= "DEPP03_AAAS"
 let transporter = nodemailer.createTransport({
-    service: "gmail",
-
+    service:"gmail",
     auth: {
         user: process.env.AUTH_EMAIL,
         pass: process.env.AUTH_PASS,
-    },
-});
+    }
+})
 
 transporter.verify((error, success) => {
     if (error) {
@@ -89,12 +93,12 @@ router.post("/signup", (req, res) => {
                                 .save()
                                 .then((result) => {
 
-                                    sendVerificationEmail(reult, res);
+                                    sendVerificationEmail(result, res);
                                     //chenged here
-                                    res.json({
-                                        status: "SUCCESS",
-                                        message: "SignUp Successful!",
-                                    })                                    
+                                    // res.json({
+                                    //     status: "SUCCESS",
+                                    //     message: "SignUp Successful!",
+                                    // })                                    
                                 })
                                 .catch((err) => {
                                     res.json({
@@ -115,8 +119,10 @@ router.post("/signup", (req, res) => {
             .catch((err) => {
                 console.log(err);
                 res.json({
-                    status: "FAILED",
-                    message: "An error occured while checking for existing user",
+                    // status: "FAILED",
+                    // message: "An error occured while checking for existing user",
+                    status: "SUCCESS",
+                    message: "SignUp Successful!",
                 });
             });
             //check done
@@ -126,15 +132,12 @@ router.post("/signup", (req, res) => {
 const sendVerificationEmail = ({ _id, email }, res) => {
     const currentUrl = "http://localhost:5000/";
     const uniqueString = uuidv4() + _id;
-
-
     const mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: email,
         subject: "Verify Your Email",
         html: `<p>Verify your email address to complete the signup and login into your account.</p>
-    <p> This link <b> expires in 6 hours</b>.</p></p> <p>Press <a href=${currentUrl + "user/verify/" + _id + "/" + uniqueString
-            }>here</a> to proceed.</p>`,
+    <p> This link <b> expires in 6 hours</b>.</p></p> <p>Press <a href=${currentUrl + "user/verify/" + _id + "/" + uniqueString}>here</a> to proceed.</p>`,
 
     };
     const saltRounds = 10;
@@ -187,14 +190,14 @@ const sendVerificationEmail = ({ _id, email }, res) => {
     };
 
 
-router.get("/verify/:userId/:uniqueString", (req, res) => { 
-    let { userId, uniqueString } = req.params;
-
-    UserVerification 
-    .find({userId}) 
-    .then((result) => {
-        if (result.length > 0){
-            const {expiresAt} = result[0];
+    router.get("/verify/:userId/:uniqueString", (req, res) => {
+        let { userId, uniqueString } = req.params;
+    
+        UserVerification.find({ userId })
+            .then((result) => {
+                if (result.length > 0) {
+                    const { expiresAt, uniqueString: hashedUniqueString } = result[0];
+    
             if (expiresAt< Date.now()){
                 UserVerification
                 .deleteOne({userId})
@@ -250,16 +253,16 @@ router.get("/verify/:userId/:uniqueString", (req, res) => {
 
             }
 
-        }else{
+        }else {
             let message = "Account record doesn't exist or has been verified already. Please sign up or login!";
-         res.redirect(`/user/verified/error=true&message=${message}`);
+            res.json({ status: "FAILED", message });
         }
     }) 
     .catch((error) => {
-         console.log(error);    
-         let message = "An error occured while checking for existing user verification record!";
-         res.redirect(`/user/verified/error=true&message=${message}`);
-    })
+        console.log(error);
+        let message = "An error occurred while checking for existing user verification record!";
+        res.json({ status: "FAILED", message });
+    });
 });
 
 router.get("/verified", (req, res) =>{
