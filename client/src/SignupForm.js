@@ -19,7 +19,7 @@ const SignupForm = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/user/signup', formData);
+      const response = await axios.post('http://localhost:3000/user/signup', formData);
 
       console.log(response.data);
 
