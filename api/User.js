@@ -39,6 +39,8 @@ router.post("/signup", (req, res) => {
     email = email.trim();
     password = password.trim();
     dateOfBirth = dateOfBirth.trim();
+    console.log('Received data:', name, email, password, dateOfBirth);
+
 
     if (name == "" || email == "" || password == "" || dateOfBirth == "") {
         res.json({

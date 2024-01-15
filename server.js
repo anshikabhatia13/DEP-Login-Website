@@ -1,7 +1,7 @@
 require("./config/db");
 
 const app = require("express")();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 // const port = 3000;
 
 //cors 
