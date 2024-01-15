@@ -34,19 +34,16 @@ transporter.verify((error, success) => {
     }
 });
 // check start
-
-
-
 router.post("/signup", (req, res) => {
     //this will be the request as sent from the client side
     let { name, email, password, dateOfBirth } = req.body;
     name = name.trim();     //trim removes white spaces
     email = email.trim();   //trim removes white spaces
-    // password = password.trim(); //trim removes white spaces
+    password = password.trim(); //trim removes white spaces
     dateOfBirth = dateOfBirth.trim();   //trim removes white spaces
     //if any of the input fields is empty, return an error message
     console.log('Received data:', name, email, password, dateOfBirth); // recieved from frontend
-    if (name == "" || email == "" ||  dateOfBirth == "") {
+    if (name == "" || email == "" || password == "" || dateOfBirth == "") {
         //we will return a json object with a status of failed and a message
         res.json({
             status: "FAILED",
