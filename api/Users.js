@@ -34,19 +34,16 @@ transporter.verify((error, success) => {
     }
 });
 // check start
-
-
-
 router.post("/signup", (req, res) => {
     //this will be the request as sent from the client side
     let { name, email, password, dateOfBirth } = req.body;
     name = name.trim();     //trim removes white spaces
     email = email.trim();   //trim removes white spaces
-    // password = password.trim(); //trim removes white spaces
+    password = password.trim(); //trim removes white spaces
     dateOfBirth = dateOfBirth.trim();   //trim removes white spaces
     //if any of the input fields is empty, return an error message
     console.log('Received data:', name, email, password, dateOfBirth); // recieved from frontend
-    if (name == "" || email == "" ||  dateOfBirth == "") {
+    if (name == "" || email == "" || password == "" || dateOfBirth == "") {
         //we will return a json object with a status of failed and a message
         res.json({
             status: "FAILED",
@@ -288,30 +285,30 @@ router.get("/verified", (req, res) =>{
 router.post("/signin", (req, res) => {
     let { email, password } = req.body;
 
-    email = email.trim();       //trim removes white spaces
-    password = password.trim(); //trim removes white spaces
-    //if any of the input fields is empty, return an error message
+    email = email.trim();
+    password = password.trim();
+
     if (email == "" || password == "") {
         res.json({
             status: "FAILED",
             message: "Empty credentials supplied",
         });
     } else {
-        //check if the user already exists
-        User.find({ email })  
+        User.find({ email })
             .then((data) => { 
 
                 if (data.length) {
-                    //a user already exists so we return a failed status with a message
+
                     if(!data[0].verified){
                         res.json({
                             status: "FAILED",
                             message: "Email has not been verified yet. check inbox!",
                         });
                     } else{
-                        //user exists so we now compare the password
                         const hashedPassword = data[0].password;
-                        bcrypt.compare(password, hashedPassword).then((result) => {
+                        bcrypt
+                            .compare(password, hashedPassword)
+                            .then((result) => {
                                 if (result) {
                                     res.json({
                                         status: "SUCCESS",
