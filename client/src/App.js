@@ -1,15 +1,20 @@
 // src/App.js
 import React from 'react';
-import SignupForm from './SignupForm';
+import './App.css';
+import { Navbar, Verify, SignIn, SignUp, Home } from './components';
 
-function App() {
+const App=()=> {
   return (
     <div className="App">
-      <h1>Your React App</h1>
-      <SignupForm />
+      <div className="gradient__bg">
+      <Navbar />
+
+    </div>
+      <h1><Home/></h1>
+
       {/* Add other components or features as needed */}
     </div>
-  );
+  )
 }
 
 export default App;

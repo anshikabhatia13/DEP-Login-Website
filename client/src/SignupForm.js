@@ -1,37 +1,56 @@
-// src/SignupForm.js
+// Import necessary dependencies
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-const SignupForm = () => {
-  const navigate = useNavigate(); // Create a navigate function
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    dateOfBirth: '',
-  });
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+// Create a functional component for Signup
+const Signup = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [dob, setDob] = useState('');
+  const [password, setPassword] = useState('');
+  const [otp, setOtp] = useState('');
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/user/signup', formData);
+      // Step 1: Submit the signup form
+      const signupResponse = await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          dateOfBirth: dob,
+          password,
+        }),
+      });
 
-      console.log(response.data);
+      const signupResult = await signupResponse.json();
 
-      // If signup is successful, redirect to the sign-in page
-      if (response.data.status === 'SUCCESS') {
-        navigate('/signin'); // Redirect to the sign-in page
+      if (signupResult.status === 'SUCCESS') {
+        // Step 2: Submit the OTP for verification
+        const verifyOtpResponse = await fetch(`/verify-otp/${signupResult.data._id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            otp,
+          }),
+        });
+
+        const verifyOtpResult = await verifyOtpResponse.json();
+
+        if (verifyOtpResult.status === 'SUCCESS') {
+          alert('Account verified successfully!');
+        } else {
+          alert(`OTP verification failed: ${verifyOtpResult.message}`);
+        }
+      } else {
+        alert(`Signup failed: ${signupResult.message}`);
       }
-
-      // Handle other responses as needed
     } catch (error) {
-      console.error('Error signing up:', error.message);
-      // Handle the error (e.g., show an error message to the user)
+      console.error('Error during signup:', error);
     }
   };
 
@@ -39,26 +58,26 @@ const SignupForm = () => {
     <div>
       <h2>Signup</h2>
       <form>
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
 
-        <label>Name:</label>
-        <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-        <label>Email:</label>
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
+        <label htmlFor="dob">Date of Birth:</label>
+        <input type="date" id="dob" value={dob} onChange={(e) => setDob(e.target.value)} required />
 
-        <label>Password:</label>
-        <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
-        <label>Date of Birth:</label>
-        <input type="text" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleInputChange} />
+        <label htmlFor="otp">OTP:</label>
+        <input type="text" id="otp" value={otp} onChange={(e) => setOtp(e.target.value)} required />
 
-        <button type="button" onClick={handleSignup}>
-          Signup
-        </button>
-        
+        <button type="button" onClick={handleSignup}>Signup</button>
       </form>
     </div>
   );
 };
 
-export default SignupForm;
+// Export the Signup component
+export default Signup;

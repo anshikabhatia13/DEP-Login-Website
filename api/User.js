@@ -37,28 +37,23 @@ transporter.verify((error, success) => {
 
 
 
-router.post("/signup", (req, res) => {
-    //this will be the request as sent from the client side
+router.post("/signup", async (req, res) => {
     let { name, email, password, dateOfBirth } = req.body;
-    name = name.trim();     //trim removes white spaces
-    email = email.trim();   //trim removes white spaces
-    password = password.trim(); //trim removes white spaces
-    dateOfBirth = dateOfBirth.trim();   //trim removes white spaces
-    //if any of the input fields is empty, return an error message
-    console.log('Received data:', name, email, password, dateOfBirth); // recieved from frontend
-    if (name == "" || email == "" || password == "" || dateOfBirth == "") {
-        //we will return a json object with a status of failed and a message
+    name = name.trim();
+    email = email.trim();
+    password = password.trim();
+    dateOfBirth = dateOfBirth.trim();
+
+    if (name === "" || email === "" || password === "" || dateOfBirth === "") {
         res.json({
             status: "FAILED",
             message: "Empty input field",
         });
     } else if (!/^[a-zA-Z ]*$/.test(name)) {
-        //if the name contains any character that is not a letter or a space, return an error message
         res.json({
             status: "FAILED",
             message: "Invalid name entered",
         });
-        //check if the email is valid
     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
         res.json({
             status: "FAILED",
@@ -69,82 +64,52 @@ router.post("/signup", (req, res) => {
             status: "FAILED",
             message: "Invalid date of birth entered",
         });
-    } else if (password.length < 8) {   //@@@@@@@@@ password 
-         res.json({
+    } else if (password.length < 8) {
+        res.json({
             status: "FAILED",
             message: "Password is too short",
         });
-       
     } else {
-        //check if the user already exists
-        User.find({ email }).then((result) => {
-                if (result.length) {
-                    //a user already exists so we return a failed status with a message
-                    //we will again return a json object with a status of failed and a message
-                    res.json({
-                        status: "FAILED",
-                        message: "User with the provided email already exists",
-                    });
-                    //check s
-                } else {
-                    //no user exists with the provided email so we go ahead to create account for the user
-                    const saltRounds = 10;
-                    //hash the password with the bcrypt salt
-                    bcrypt
-                        .hash(password, saltRounds)
-                        .then((hashedPassword) => {
-                            //create a new user with all the details with mongoose model
-                            const newUser = new User({
-                                name,
-                                email,
-                                password: hashedPassword,
-                                dateOfBirth,
-                                verified: false
+        // Generate OTP
+        const otp = generateOTP();
 
-                            });
+        // Hash the OTP before storing it in the database
+        const saltRounds = 10;
+        const hashedOtp = await bcrypt.hash(otp.toString(), saltRounds);
 
-                            newUser
-                                .save()     //save the user
-                                .then((result) => { 
+        // Store the hashed OTP in the user model
+        const newUser = new User({
+            name,
+            email,
+            password: hashedOtp, // Storing hashed OTP for verification
+            dateOfBirth,
+            verified: false,
+        });
 
-                                    sendVerificationEmail(result, res);
-                                    // changed here
-                                    res.json({
-                                        status: "SUCCESS",
-                                        message: "SignUp Successful!",
-                                        data: result,
-                                    })                                    
-                                })
-                                .catch((err) => {
-                                    res.json({
-                                        status: "FAILED",
-                                        message: "An error occured while saving user account!",
-                                    });
-                                });
-                        })
-                        .catch((err) => {
-                            res.json({
-                                status: "FAILED",
-                                message: "An error occured while hashing password!",
-                            });
-                        });
-                }
+        newUser
+            .save()
+            .then((result) => {
+                sendVerificationEmail(result, otp, res);
+                res.json({
+                    status: "SUCCESS",
+                    message: "SignUp Successful! Check your email for OTP.",
+                    data: result,
+                });
             })
-            
             .catch((err) => {
-                console.log(err);
                 res.json({
                     status: "FAILED",
-                    message: "An error occured while checking for existing user",
-                    // status: "SUCCESS",
-                    // message: "SignUp Successful!",
+                    message: "An error occurred while saving user account!",
                 });
             });
-            //check done
     }
 });
 
-const sendVerificationEmail = ({ _id, email }, res) => {
+const generateOTP = () => {
+    return Math.floor(100000 + Math.random() * 900000);
+};
+ 
+const sendVerificationEmail = ({ _id, email }, otp, res) => {
     const currentUrl = "http://localhost:5000/";
     const uniqueString = uuidv4() + _id;
     const mailOptions = {
@@ -152,9 +117,11 @@ const sendVerificationEmail = ({ _id, email }, res) => {
         to: email,
         subject: "Verify Your Email",
         html: `<p>Verify your email address to complete the signup and login into your account.</p>
-    <p> This link <b> expires in 6 hours</b>.</p></p> <p>Press <a href=${currentUrl + "user/verify/" + _id + "/" + uniqueString}>here</a> to proceed.</p>`,
+                <p>This link <b>expires in 6 hours</b>.</p>
+                <p>Press <a href=${currentUrl + "user/verify/" + _id + "/" + uniqueString}>here</a> to proceed.</p>
+                <p>Your OTP: ${otp}</p>`,
+};
 
-    };
     const saltRounds = 10;
     bcrypt
         .hash(uniqueString, saltRounds)
@@ -285,6 +252,41 @@ const sendVerificationEmail = ({ _id, email }, res) => {
 router.get("/verified", (req, res) =>{
     res.sendFile(path.join(__dirname, "./../views/verified.html"));
 })
+
+
+router.post("/verify-otp/:userId", async (req, res) => {
+    const { userId } = req.params;
+    const { otp } = req.body;
+
+    // Retrieve the user from the database
+    const user = await User.findById(userId);
+
+    if (!user) {
+        return res.json({
+            status: "FAILED",
+            message: "User not found",
+        });
+    }
+
+    // Compare the provided OTP with the stored hashed OTP
+    const result = await bcrypt.compare(otp.toString(), user.password);
+
+    if (result) {
+        // OTP is valid, update user as verified
+        await User.updateOne({ _id: userId }, { verified: true });
+
+        res.json({
+            status: "SUCCESS",
+            message: "Account verified successfully!",
+        });
+    } else {
+        res.json({
+            status: "FAILED",
+            message: "Invalid OTP",
+        });
+    }
+});
+
 router.post("/signin", (req, res) => {
     let { email, password } = req.body;
 
