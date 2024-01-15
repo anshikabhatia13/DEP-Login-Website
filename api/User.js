@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+//mongoDB user model
 const User = require("./../models/User");
 
 const UserVerification = require("./../models/UserVerification");
@@ -8,6 +8,7 @@ const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
 
+//password handler
 const bcrypt = require("bcrypt");
 
 const path = require("path");
@@ -34,22 +35,26 @@ transporter.verify((error, success) => {
 });
 // check start
 router.post("/signup", (req, res) => {
+    //this will be the request as sent from the client side
     let { name, email, password, dateOfBirth } = req.body;
-    name = name.trim();
-    email = email.trim();
-    password = password.trim();
-    dateOfBirth = dateOfBirth.trim();
-
+    name = name.trim();     //trim removes white spaces
+    email = email.trim();   //trim removes white spaces
+    password = password.trim(); //trim removes white spaces
+    dateOfBirth = dateOfBirth.trim();   //trim removes white spaces
+    //if any of the input fields is empty, return an error message
     if (name == "" || email == "" || password == "" || dateOfBirth == "") {
+        //we will return a json object with a status of failed and a message
         res.json({
             status: "FAILED",
             message: "Empty input field",
         });
     } else if (!/^[a-zA-Z ]*$/.test(name)) {
+        //if the name contains any character that is not a letter or a space, return an error message
         res.json({
             status: "FAILED",
             message: "Invalid name entered",
         });
+        //check if the email is valid
     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
         res.json({
             status: "FAILED",
@@ -60,26 +65,31 @@ router.post("/signup", (req, res) => {
             status: "FAILED",
             message: "Invalid date of birth entered",
         });
-    } else if (password.length < 8) {
-        res.json({
+    } else if (password.length < 8) {   //@@@@@@@@@ password 
+         res.json({
             status: "FAILED",
             message: "Password is too short",
         });
        
     } else {
-        User.find({ email })
-            .then((result) => {
+        //check if the user already exists
+        User.find({ email }).then((result) => {
                 if (result.length) {
+                    //a user already exists so we return a failed status with a message
+                    //we will again return a json object with a status of failed and a message
                     res.json({
                         status: "FAILED",
                         message: "User with the provided email already exists",
                     });
                     //check s
                 } else {
+                    //no user exists with the provided email so we go ahead to create account for the user
                     const saltRounds = 10;
+                    //hash the password with the bcrypt salt
                     bcrypt
                         .hash(password, saltRounds)
                         .then((hashedPassword) => {
+                            //create a new user with all the details with mongoose model
                             const newUser = new User({
                                 name,
                                 email,
@@ -90,15 +100,16 @@ router.post("/signup", (req, res) => {
                             });
 
                             newUser
-                                .save()
-                                .then((result) => {
+                                .save()     //save the user
+                                .then((result) => { 
 
                                     sendVerificationEmail(result, res);
-                                    //chenged here
-                                    // res.json({
-                                    //     status: "SUCCESS",
-                                    //     message: "SignUp Successful!",
-                                    // })                                    
+                                    // changed here
+                                    res.json({
+                                        status: "SUCCESS",
+                                        message: "SignUp Successful!",
+                                        data: result,
+                                    })                                    
                                 })
                                 .catch((err) => {
                                     res.json({
@@ -119,10 +130,10 @@ router.post("/signup", (req, res) => {
             .catch((err) => {
                 console.log(err);
                 res.json({
-                    // status: "FAILED",
-                    // message: "An error occured while checking for existing user",
-                    status: "SUCCESS",
-                    message: "SignUp Successful!",
+                    status: "FAILED",
+                    message: "An error occured while checking for existing user",
+                    // status: "SUCCESS",
+                    // message: "SignUp Successful!",
                 });
             });
             //check done
