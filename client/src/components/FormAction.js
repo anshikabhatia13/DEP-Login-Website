@@ -1,9 +1,22 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function FormAction({
-    handleSubmit,
     type = 'Button',
     action = 'submit',
-    text
+    text,
+    to // new prop to specify the target page
 }) {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        // Check if a custom "to" prop is provided
+        if (to) {
+            navigate(to); // Navigate to the specified page
+        } else {
+            console.warn('No "to" prop provided for navigation.');
+        }
+    };
+
     return (
         <>
             {type === 'Button' ? (
@@ -11,10 +24,8 @@ export default function FormAction({
                     <button
                         type={action}
                         className="button"
-                        onClick={handleSubmit}
-
+                        onClick={handleClick}
                     >
-                    
                         {text}
                     </button>
                 </div>
