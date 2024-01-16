@@ -11,7 +11,7 @@ export default function Header({
   return (
     <div className="header-container flex flex-col items-center" >
       <div className="header-logo flex justify-center">
-        <img src={logo} alt="Logo" />
+        <img src={logo} alt="Logo" className="header-logo-img" />
       </div>
       <h2 className="header-heading mt-6 text-center text-3xl font-extrabold text-gray-900">
         {heading}
@@ -23,5 +23,5 @@ export default function Header({
         </Link>
       </p>
     </div>
-  )
+  );
 }

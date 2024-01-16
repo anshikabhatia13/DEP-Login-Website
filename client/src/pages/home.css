@@ -4,9 +4,7 @@
     background-color: rgb(234, 220, 245);
     background: url('../iit.jpg') center/cover no-repeat; /* Add your image URL */
     padding-left: 5%;
-    
 }
-
 .gpt3__header-content {
     flex: 1;
     display: flex;
@@ -128,6 +126,8 @@
 .gpt3__header-image img {
     width: 50%;
     height: 50%;
+    object-fit: contain;
+    border-radius: 10px; /* Add border-radius for a rounded appearance */
 }
 
 

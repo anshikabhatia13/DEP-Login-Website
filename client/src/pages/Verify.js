@@ -5,7 +5,7 @@ export default function VerifyPage(){
     return(
         <>
              <Header
-                heading="Please Enter your OTP"
+                heading={<span style={{ fontWeight: 'bold', fontStyle: 'normal', fontSize: '2rem', color: '#333' }}>Please Enter your OTP</span>}
                 paragraph="Don't have an account yet? "
                 linkName="Signup"
                 linkUrl="/signup"

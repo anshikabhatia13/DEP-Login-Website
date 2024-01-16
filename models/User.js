@@ -12,5 +12,5 @@ const UserSchema = new Schema ({
     expiresAt: Date,
 });
 
-const User = mongoose.model('Asad', UserSchema);
+const User = mongoose.model('Project_DEP_2024', UserSchema);
 module.exports = User;

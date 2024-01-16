@@ -4,9 +4,17 @@
     align-items: center;
     background-color: #babdc2;;
 
-    padding: 2rem 6rem;
+    padding: 0.5rem 4rem;
+    border-top-left-radius: 20px; /* Added border radius */
+    border-top-right-radius: 20px; /* Added border radius */
+    border-bottom-left-radius: 20px; /* Added border radius */
+    border-bottom-right-radius: 20px; /* Added border radius */
 }
 
+.gpt3__navbar-links_container a.nav-link {
+    margin-right: 1rem; /* Adjust as needed */
+  }
+  
 .gpt3__navbar-links {
     flex: 1;
     display: flex;
@@ -15,13 +23,13 @@
 }
 
 .gpt3__navbar-links_logo {
-    margin-right: 2rem;
+    margin-right: 1rem; /* Reduced margin */
     align-self: start;
 }
 
 .gpt3__navbar-links_logo img {
-    width: 120px;
-    height: 120px;
+    width: 80px; /* Reduced logo size */
+    height: 80px; /* Reduced logo size */
 }
 
 .gpt3__navbar-links_container {
@@ -29,6 +37,35 @@
     flex-direction: row;
 }
 
+.gpt3__navbar-links_container a,
+.gpt3__navbar-links_container p {
+  color: #fff;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 35px;
+  text-transform: capitalize;
+  margin-right: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  background-color: #4c4fd1; /* Background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a lifted effect */
+}
+
+.gpt3__navbar-links_container a:hover,
+.gpt3__navbar-links_container p:hover {
+  background-color: #665ed0; /* Change background color on hover */
+}
+
+.gpt3__navbar-links_container p {
+  cursor: pointer;
+}
+
+.gpt3__navbar-links_container a {
+  background-color: #726c6b; /* Different color for the "IIT Ropar" link */
+}
 .gpt3__navbar-sign {
     display: flex;
     justify-content: flex-end;
@@ -41,10 +78,9 @@
     color: #fff;
     font-family: var(--font-family);
     font-weight: 500;
-    font-size: 20px;
-    line-height: 35px;
+    font-size: 23px; /* Reduced font size */
+    line-height: 30px; /* Adjusted line height */
     text-transform: capitalize;
-
     margin: 0 1rem;
     cursor: pointer;
 }
@@ -56,8 +92,8 @@
     background: #FF4820;
     font-family: var(--font-family);
     font-weight: 500;
-    font-size: 18px;
-    line-height: 25px;
+    font-size: 16px; /* Reduced font size */
+    line-height: 22px; /* Adjusted line height */
     border: none;
     outline: none;
     cursor: pointer;
@@ -80,15 +116,14 @@
     justify-content: flex-end;
     align-items: flex-end;
     flex-direction: column;
-    
     text-align: end;
     background: var(--color-footer);
-    padding: 2rem;
+    padding: 1rem; /* Adjusted padding to reduce height */
     position: absolute;
     right: 0;
-    top: 40px;
-    margin-top: 1rem;
-    min-width: 210px;
+    top: 30px; /* Adjusted top position */
+    margin-top: 0.5rem; /* Adjusted margin top */
+    min-width: 180px; /* Reduced width */
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0,0, 0,0.2);
 }

@@ -2,29 +2,45 @@
 
 /* Center the entire content */
 .header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Style the logo */
-  .header-logo {
-    /* Set a maximum width for the logo */
-    max-width: 100%;
-    /* Add some margin if needed */
-    margin: 10px;
-  }
-  
-  /* Style the heading */
-  .header-heading {
-    text-align: center;
-  }
-  
-  /* Style the paragraph */
-  .header-paragraph {
-    font-size: 0.875rem; /* 14px - Adjust as needed */
-    text-align: center;
-  }
-  
- 
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style the logo container */
+.header-logo {
+  /* Set a maximum width for the logo */
+  max-width: 100%;
+  /* Add some margin if needed */
+  margin: 20px; /* Increased margin for a bit more spacing */
+  /* Apply box shadow for a subtle lift effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Apply border-radius for a rounded appearance */
+  border-radius: 8px;
+}
+
+/* Style the logo image size */
+.header-logo-img {
+  width: 120px; /* Adjust the width as needed */
+  height: 120px; /* Adjust the height as needed */
+  /* Apply a subtle shadow to the image */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add some border-radius for a rounded appearance */
+  border-radius: 8px;
+}
+
+/* Style the heading */
+.header-heading {
+  text-align: center;
+  font-size: 2rem; /* Increased font size for the heading */
+  color: #333; /* Darkened text color for a more professional look */
+  margin-top: 10px; /* Small top margin for separation */
+}
+
+/* Style the paragraph */
+.header-paragraph {
+  font-size: 1rem; /* 16px - Adjusted font size for better readability */
+  text-align: center;
+  color: #666; /* Slightly darker text color for better contrast */
+  margin-top: 10px; /* Small top margin for separation */
+}

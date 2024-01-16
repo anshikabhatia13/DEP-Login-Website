@@ -238,8 +238,8 @@ const sendVerificationEmail = ({ _id, email }, otp, res) => {
         to: email,
         subject: "Verify Your Email",
         html: `<p>Verify your email address to complete the signup and login into your account.</p>
-//             <p>This link <b>expires in 6 hours</b>.</p>
-//             <p>Enter this OTP: <strong>${otp}</strong> on the verification page.</p>`,
+            <p>This OTP expires in <b>5 minutes</b>.</p>
+            <p>Enter this OTP: <strong>${otp}</strong> on the verification page.</p>`,
 };
 
 

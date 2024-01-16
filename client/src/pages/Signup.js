@@ -5,7 +5,7 @@ export default function SignupPage(){
     return(
         <>
             <Header
-              heading="Signup to create an account"
+              heading={<span style={{ fontWeight: 'bold', fontStyle: 'normal', fontSize: '2rem', color: '#333' }}>Signup to create an account</span>}
               paragraph="Already have an account? "
               linkName="Login"
               linkUrl="/"
