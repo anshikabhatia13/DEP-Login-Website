@@ -8,17 +8,21 @@ const loginFields=[
         autoComplete:"email",
         isRequired:true,
         placeholder:"Email address"   
-    },
+    }
+]
+
+
+const verifyFields=[
     {
-        labelText:"Password",
+        labelText:"Enter OTP",
         labelFor:"password",
         id:"password",
         name:"password",
         type:"password",
         autoComplete:"current-password",
         isRequired:true,
-        placeholder:"Password"   
-    }
+        placeholder:"Enter OTP"   
+    },
 ]
 
 const signupFields=[
@@ -43,25 +47,16 @@ const signupFields=[
         placeholder:"Email address"   
     },
     {
-        labelText:"Password",
-        labelFor:"password",
-        id:"password",
-        name:"password",
-        type:"password",
-        autoComplete:"current-password",
-        isRequired:true,
-        placeholder:"Password"   
+        labelText:"Date of Birth",
+        labelFor:"dateofbirth",
+        id:"dateofbirth",
+        name:"dateofbirth",
+        type:"dateofbirth",
+        autoComplete:"current-dateofbirth",
+        isRequired:false,
+        placeholder:"Date of Birth"   
     },
-    {
-        labelText:"Confirm Password",
-        labelFor:"confirm-password",
-        id:"confirm-password",
-        name:"confirm-password",
-        type:"password",
-        autoComplete:"confirm-password",
-        isRequired:true,
-        placeholder:"Confirm Password"   
-    }
+    
 ]
 
-export {loginFields,signupFields}
+export {loginFields,signupFields, verifyFields}

@@ -1,38 +1,39 @@
 import { useState } from 'react';
-import { signupFields } from "../constants/formFields"
-import FormAction from "./FormAction";
+import { verifyFields } from "../constants/formFields";
+import FormExtra from "./FormExtra";
 import Input from "./Input";
+import './login.css';
 
-const fields=signupFields;
-let fieldsState={};
+const fields=verifyFields;
+let fieldsState = {};
+fields.forEach(field=>fieldsState[field.id]='');
 
-fields.forEach(field => fieldsState[field.id]='');
+export default function Login(){
+    const [loginState,setLoginState]=useState(fieldsState);
 
-export default function Signup(){
-  const [signupState,setSignupState]=useState(fieldsState);
+    const handleChange=(e)=>{
+        setLoginState({...loginState,[e.target.id]:e.target.value})
+    }
 
-  const handleChange=(e)=>setSignupState({...signupState,[e.target.id]:e.target.value});
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        authenticateUser();
+    }
 
-  const handleSubmit=(e)=>{
-    e.preventDefault();
-    console.log(signupState)
-    createAccount()
-  }
+    //Handle Login API Integration here
+    const authenticateUser = () =>{
 
-  //handle Signup API Integration here
-  const createAccount=()=>{
-
-  }
+    }
 
     return(
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-        <div className="total-form">
-        {
+        <div className="-space-y-px">
+            {
                 fields.map(field=>
                         <Input
                             key={field.id}
                             handleChange={handleChange}
-                            value={signupState[field.id]}
+                            value={loginState[field.id]}
                             labelText={field.labelText}
                             labelFor={field.labelFor}
                             id={field.id}
@@ -44,11 +45,10 @@ export default function Signup(){
                 
                 )
             }
-            
-          <FormAction handleSubmit={handleSubmit} text="Send OTP" to="/Verify"/>
         </div>
 
-         
+        <FormExtra/>
+        
 
       </form>
     )

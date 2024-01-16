@@ -17,7 +17,7 @@ export default function FormExtra() {
 
             <div className="text-sm-container">
                 <a href="#" className="text-link">
-                    Forgot your password?
+                    Resend OTP
                 </a>
             </div>
         </div>

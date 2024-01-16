@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import Signup from "../components/Signup";
+import Signup from "../components/Verify";
 
 export default function SignupPage(){
     return(
