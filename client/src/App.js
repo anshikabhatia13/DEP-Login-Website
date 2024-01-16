@@ -6,6 +6,10 @@ import { Navbar} from './components';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
 import VerifyPage from './pages/Verify';
+import HomePage from './pages/Home';
+import Home from './pages/Home';
+
+
 
 
 function App () {
@@ -24,6 +28,7 @@ function App () {
             <Route path="/" element={<LoginPage/>} />
             <Route path="/signup" element={<SignupPage/>} />
             <Route path="/verify" element={<VerifyPage/>} />
+            <Route path="/home" element={<HomePage/>} />
 
         </Routes>
       

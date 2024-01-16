@@ -10,7 +10,12 @@
     border: 1px solid #4f0e7d;
     border-radius: 20px;
   }
-  
+  .buttoncenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust as needed */
+}
   /* Style form inputs and labels */
   .space-y-6 > div {
     margin-bottom: 1.5rem; /* Adjust as needed */

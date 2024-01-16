@@ -6,7 +6,7 @@ export default function VerifyPage(){
         <>
              <Header
                 heading="Please Enter your OTP"
-                // paragraph="Don't have an account yet? "
+                paragraph="Don't have an account yet? "
                 linkName="Signup"
                 linkUrl="/signup"
                 />
