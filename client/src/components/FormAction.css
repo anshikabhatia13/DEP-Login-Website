@@ -1,12 +1,13 @@
-.group {
+
+.flex-center {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 00vh; /* Adjust as needed based on your layout */
+    align-items: center;
+    height: 100%; /* Ensure the container takes the full height */
 }
 
 .button {
-    width: 250px; /* Adjust the width as needed */
+    width: 5000px; /* Adjust the width as needed */
     height: 30px; /* Adjust the height as needed */
     border: 1px solid transparent;
     text-align: center;
@@ -19,6 +20,4 @@
     align-items: center;
 }
 
-.button:hover {
-    background-color: #7f00ff; /* Adjust the hover color as needed */
-}
+

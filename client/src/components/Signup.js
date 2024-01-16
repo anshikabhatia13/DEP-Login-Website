@@ -44,8 +44,8 @@ export default function Signup(){
                 
                 )
             }
-            
-          <FormAction handleSubmit={handleSubmit} text="Send OTP" to="/verify"/>
+            <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Send OTP" to="/verify"/></div>
+          
         </div>
 
          

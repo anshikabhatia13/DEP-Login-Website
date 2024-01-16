@@ -3,7 +3,7 @@ import { verifyFields } from "../constants/formFields";
 import FormExtra from "./FormExtra";
 import FormAction from "./FormAction";
 import Input from "./Input";
-import './login.css';
+import './verify.css';
 
 const fields=verifyFields;
 let fieldsState = {};
@@ -46,10 +46,13 @@ export default function Login(){
                 
                 )
             }
+            
+  
         </div>
 
         {/* <FormExtra/> */}
-        <FormAction handleSubmit={handleSubmit} text="Confirm OTP" to="/home"/>
+        
+        <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Confirm OTP" to="/home"/>   </div>
         
 
       </form>
