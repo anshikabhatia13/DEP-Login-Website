@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { verifyFields } from "../constants/formFields";
 import FormExtra from "./FormExtra";
+import FormAction from "./FormAction";
 import Input from "./Input";
 import './login.css';
 
@@ -47,7 +48,8 @@ export default function Login(){
             }
         </div>
 
-        <FormExtra/>
+        {/* <FormExtra/> */}
+        <FormAction handleSubmit={handleSubmit} text="Confirm OTP" to="/home"/>
         
 
       </form>
