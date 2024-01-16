@@ -62,10 +62,9 @@ transporter.verify((error, success) => {
 // check start
 
 
-
-router.post("/signup", async (req, res) => {
-    let { name, email, password, dateOfBirth } = req.body;
-    name = name.trim();
+router.post("/signup", async (req, res) => {//this will handle all post requests to the signup path
+    let { name, email, password, dateOfBirth } = req.body; //this is the body of the incoming request from the client
+    name = name.trim(); 
     email = email.trim();
     password = password.trim();
     dateOfBirth = dateOfBirth.trim();
@@ -213,6 +212,7 @@ const sendVerificationEmail = ({ _id, email }, otp, res) => {
 
 //verify email
 router.get("/verify/:userId/:uniqueString", (req, res) => {
+    //The :uniqueString parameter in the path will be matched to the id of the user that is being retrieved. 
     let { userId, uniqueString } = req.params;
 
     //check if user exists
