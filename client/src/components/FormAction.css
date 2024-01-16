@@ -1,0 +1,23 @@
+.group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust as needed based on your layout */
+}
+
+.button {
+    width: 150px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    border: 1px solid transparent;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    background-color: purple;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #7f00ff; /* Adjust the hover color as needed */
+}
