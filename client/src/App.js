@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Navbar} from './components';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
+import VerifyPage from './pages/Verify';
 
 
 function App () {
@@ -12,6 +13,8 @@ function App () {
     <div className="App">
       <div className="gradient__bg">
         <Navbar />
+    
+        
       </div>
 
       <div className="min-h-full h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -20,6 +23,8 @@ function App () {
         <Routes>
             <Route path="/" element={<LoginPage/>} />
             <Route path="/signup" element={<SignupPage/>} />
+            <Route path="/verify" element={<VerifyPage/>} />
+
         </Routes>
       
   </div>

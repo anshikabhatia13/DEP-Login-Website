@@ -2,13 +2,13 @@
 
 /* Style the form container */
 .form-container {
-    max-width: 400px; /* Adjust as needed */
-    max-height: 50px;
-    margin: auto;
+    max-width: 200px; /* Adjust as needed */
+    max-height: 40px;
+    align-self: center;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #4f0e7d;
+    border-radius: 20px;
   }
   
   /* Style form inputs and labels */
@@ -30,13 +30,15 @@
   
   .login-btn:hover {
     background-color: #45a049; /* Adjust as needed */
+    align-items: center;
   }
   
   /* Style the form extra content */
   .form-extra {
     margin-top: 20px; /* Adjust as needed */
     text-align: center;
-    color: #555;
+    color: #471010;
+    align-self: center;
   }
   
   /* Style the input fields */
@@ -46,7 +48,7 @@
     margin: 8px 0;
     box-sizing: border-box;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 100px;
   }
   
   /* Style the form labels */

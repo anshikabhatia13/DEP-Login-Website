@@ -12,7 +12,9 @@ export default function FormAction({
                         type={action}
                         className="button"
                         onClick={handleSubmit}
+
                     >
+                    
                         {text}
                     </button>
                 </div>
