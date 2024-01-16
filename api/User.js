@@ -15,15 +15,40 @@ const path = require("path");
 
 const { error } = require("console");
 
-let AUTH_EMAIL= "dep.p03.2024@gmail.com"
-let AUTH_PASS= "DEPP03_AAAS"
-let transporter = nodemailer.createTransport({
-    service:"gmail",
+
+const { createTransport } = require('nodemailer');
+
+const transporter = createTransport({
+    host: "smtp-relay.sendinblue.com",
+    port: 587,
     auth: {
-        user: process.env.AUTH_EMAIL,
-        pass: process.env.AUTH_PASS,
-    }
-})
+        user: "dep.p03.2024@gmail.com",
+        pass: "xsmtpsib-6b29f1272c05632003314cbce5f6cb6cfc5195cebc247e569f129c3a64beafd9-zDhHMgZ9jwLxKGBA",
+    },
+});
+
+// const mailOptions = {
+//     from: 'dep.p03.2024@gmail.com',
+//     to: 'asadalam1021@gmail.com',
+//     subject: `verification email`,
+//     text: `Here is the otp to verify your account`
+// };
+
+// transporter.sendMail(mailOptions, function(error, info){
+//     if (error) {
+//         console.log(error);
+//     } else {
+//         console.log('Email sent: ' + info.response);
+//     }
+// });
+
+// let transporter = nodemailer.createTransport({
+//     service:"gmail",
+//     auth: {
+//         user: process.env.AUTH_EMAIL,
+//         pass: process.env.AUTH_PASS,
+//     }
+// })
 
 transporter.verify((error, success) => {
     if (error) {
@@ -137,9 +162,7 @@ const sendVerificationEmail = ({ _id, email }, otp, res) => {
             newVerification      
                 .save()
                 .then(() =>{
-                    transporter
-                    .sendMail(mailOptions)
-                    .then( ()=>{
+                    transporter.sendMail(mailOptions).then( ()=>{
                         res.json({
                             status: "PENDING",
                             message: "Verification email sent!",
