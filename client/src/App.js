@@ -1,20 +1,31 @@
 // src/App.js
 import React from 'react';
-import './App.css';
-import { Navbar, Verify, SignIn, SignUp, Home } from './components';
+// import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { Navbar} from './components';
+import SignupPage from './pages/Signup';
+import LoginPage from './pages/Login';
 
-const App=()=> {
+
+function App () {
   return (
     <div className="App">
       <div className="gradient__bg">
-      <Navbar />
+        <Navbar />
+      </div>
 
+      <div className="min-h-full h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-md w-full space-y-8">
+     
+        <Routes>
+            <Route path="/" element={<LoginPage/>} />
+            <Route path="/signup" element={<SignupPage/>} />
+        </Routes>
+      
+  </div>
     </div>
-      <h1><Home/></h1>
-
-      {/* Add other components or features as needed */}
     </div>
-  )
+  );
 }
 
 export default App;

@@ -1,0 +1,30 @@
+/* header.css */
+
+/* Center the entire content */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Style the logo */
+  .header-logo {
+    /* Set a maximum width for the logo */
+    max-width: 100%;
+    /* Add some margin if needed */
+    margin: 10px;
+  }
+  
+  /* Style the heading */
+  .header-heading {
+    text-align: center;
+  }
+  
+  /* Style the paragraph */
+  .header-paragraph {
+    font-size: 0.875rem; /* 14px - Adjust as needed */
+    text-align: center;
+  }
+  
+ 
+  
