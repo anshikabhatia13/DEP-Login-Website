@@ -4,10 +4,13 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema ({
     name: String,
     email: String,
-    password: String,
-    dateOfBirth: Date,
-    verified: Boolean
+    otp: String, // Add the 'otp' field for storing the OTP
+    // verified: Boolean,
+    uid: String,
+    address: String,
+    createdAt: Date,
+    expiresAt: Date,
 });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('Asad', UserSchema);
 module.exports = User;
