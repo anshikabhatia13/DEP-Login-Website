@@ -21,7 +21,8 @@ const verifyFields=[
         type:"password",
         autoComplete:"current-password",
         isRequired:true,
-        placeholder:"Enter OTP"   
+        placeholder:"Enter OTP" 
+      
     },
 ]
 
@@ -47,14 +48,24 @@ const signupFields=[
         placeholder:"Email address"   
     },
     {
-        labelText:"Date of Birth",
-        labelFor:"dateofbirth",
-        id:"dateofbirth",
-        name:"dateofbirth",
-        type:"dateofbirth",
-        autoComplete:"current-dateofbirth",
+        labelText:"Phone Number",
+        labelFor:"phone-number",
+        id:"phone-number",
+        name:"phone-number",
+        type:"phone-number",
+        autoComplete:"current-phone-number",
         isRequired:false,
-        placeholder:"Date of Birth"   
+        placeholder:"phone-number"   
+    },
+    {
+        labelText:"Address",
+        labelFor:"address",
+        id:"address",
+        name:"address",
+        type:"address",
+        autoComplete:"current-address",
+        isRequired:false,
+        placeholder:"Address"   
     },
     
 ]
