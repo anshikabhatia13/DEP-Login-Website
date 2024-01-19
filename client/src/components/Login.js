@@ -5,6 +5,7 @@ import FormExtra from "./FormExtra";
 import Input from "./Input";
 import { useNavigate } from 'react-router-dom';
 import './login.css';
+import axios from 'axios';
 
 const fields = loginFields;
 let fieldsState = {};
@@ -12,7 +13,12 @@ fields.forEach(field => fieldsState[field.id] = '');
 
 export default function Login() {
     const [loginState, setLoginState] = useState(fieldsState);
-    const navigate = useNavigate(); // Use useNavigate instead of useHistory
+    // const [loginError, setLoginError] = useState(false); // New state variable
+    const navigate = useNavigate(); 
+    const transformedLoginState = {
+        email: loginState['email-address'],
+        // Add other properties if needed
+    };
 
     const handleChange = (e) => {
         setLoginState({ ...loginState, [e.target.id]: e.target.value });
@@ -25,9 +31,26 @@ export default function Login() {
 
     // Handle Login API Integration here
     const authenticateUser = () => {
-        // Redirect to 'verify' page
-        navigate('/verify');
-    }
+        // Make a post request to the backend
+        axios.post('http://localhost:5000/user/signin', transformedLoginState)
+            .then((response) => {
+                // console.log(response);
+                // If the response is successful, redirect to the verify page
+                if (response.data.status === "PENDING") {
+                    navigate('/verify');
+                }
+                else {
+                    // If the response is unsuccessful, display an error message
+                    setLoginError(true);
+                }
+            }
+            )
+            .catch((error) => {
+                console.log(error);
+                // Handle errors, e.g., display an error message to the user
+            });
+    };
+
 
     return (
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -49,8 +72,8 @@ export default function Login() {
             </div>
 
             <FormExtra />
-            <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Send OTP"  /></div>
-            
+            <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Send OTP" /></div>
+
         </form>
     );
 }
