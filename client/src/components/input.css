@@ -2,7 +2,6 @@
 
 /* Add any additional styles you need for the input component */
 .my-5 {
-    
     align-self: center;
   }
   
@@ -21,9 +20,9 @@
     position: relative;
   }
   
-  .block {
+  /* .block {
     display: block;
-  }
+  } */
 
   .w-full {
     width: 100%;
@@ -47,7 +46,7 @@
   }
   
   .border-gray-300 {
-    border-color: #f0eff4 /* Adjust as needed */
+    border-color: #797883 /* Adjust as needed */
   }
   
   .placeholder-gray-500::placeholder {

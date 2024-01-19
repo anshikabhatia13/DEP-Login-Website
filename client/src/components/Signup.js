@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { signupFields } from "../constants/formFields"
 import FormAction from "./FormAction";
 import Input from "./Input";
-
+import FormExtra from "./FormExtra";
+import './signup.css';
 const fields=signupFields;
 let fieldsState={};
 
@@ -44,8 +45,9 @@ export default function Signup(){
                 
                 )
             }
+            
             <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Send OTP" to="/verify"/></div>
-          
+            <FormExtra />
         </div>
 
          

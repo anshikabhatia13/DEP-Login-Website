@@ -1,0 +1,32 @@
+/* form-extra.css */
+
+.form-extra {
+   
+    align-items: center;  
+    margin-top: 10%;
+  }
+  
+  
+  .checkbox-input {
+    margin-right: 5px;
+    
+  }
+  
+  .checkbox-label {
+    font-size: 1rem;
+    color: #9c9cb0;
+  }
+  
+  .text-sm-container {
+    font-size: 0.9rem;
+  }
+  
+  .text-link {
+    color: #0074ef; /* Adjust the link color as needed */
+    text-decoration: none;
+  }
+  
+  .text-link:hover {
+    text-decoration: underline;
+  }
+  

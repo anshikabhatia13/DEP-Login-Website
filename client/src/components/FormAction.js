@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-
+import './FormAction.css'; 
 export default function FormAction({
     type = 'Button',
     action = 'submit',
