@@ -3,12 +3,12 @@
 /* Style the form container */
 .form-container {
     max-width: 200px; /* Adjust as needed */
-    max-height: 40px;
+    max-height: 25px;
     align-self: center;
     padding: 20px;
     background-color: #ffffff;
-    border: 1px solid #4f0e7d;
-    border-radius: 20px;
+    border: 1px solid #fffeff;
+    border-radius: 10px;
   }
   .buttoncenter {
     display: flex;
@@ -42,7 +42,7 @@
   .form-extra {
     margin-top: 20px; /* Adjust as needed */
     text-align: center;
-    color: #471010;
+    color: #dcb3b3;
     align-self: center;
   }
   

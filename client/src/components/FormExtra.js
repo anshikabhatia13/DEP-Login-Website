@@ -1,9 +1,9 @@
 import React from 'react';
-
+import './formextra.css'; 
 export default function FormExtra() {
     return (
         <div className="form-extra">
-            <div className="checkbox-container">
+            {/* <div className="checkbox-container">
                 <input
                     id="remember-me"
                     name="remember-me"
@@ -13,7 +13,7 @@ export default function FormExtra() {
                 <label htmlFor="remember-me" className="checkbox-label">
                     Remember me
                 </label>
-            </div>
+            </div> */}
 
             <div className="text-sm-container">
                 <a href="#" className="text-link">

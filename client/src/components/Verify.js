@@ -72,8 +72,8 @@ export default function Login(){
 
         {/* <FormExtra/> */}
         
-        <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Confirm OTP" />   </div>
-        
+        <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Confirm OTP"/>   </div>
+        <FormExtra />
 
       </form>
     )

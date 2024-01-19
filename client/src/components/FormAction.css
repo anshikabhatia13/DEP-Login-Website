@@ -7,15 +7,15 @@
 }
 
 .button {
-    width: 5000px; /* Adjust the width as needed */
+    width: 230px; /* Adjust the width as needed */
     height: 30px; /* Adjust the height as needed */
-    border: 1px solid transparent;
+    border: 1px  transparent;
     text-align: center;
-    font-size: 14px;
+    font-size: 18px;
     color: white;
-    background-color: purple;
+    background-color: #3c3484;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
     transition: background-color 0.3s ease;
     align-items: center;
 }
