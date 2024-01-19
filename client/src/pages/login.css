@@ -1,13 +1,10 @@
 /* loginPage.css */
 
-/* Style the container */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #6796b6; /* Adjust as needed */
+        /* Style the container    */
+.login-page-container {
+    margin-top: -2px;
+    margin-bottom: -2px;
+    background-color: rgb(255, 255, 255);
 }
 
 body {

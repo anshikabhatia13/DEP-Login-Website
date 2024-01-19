@@ -8,7 +8,7 @@
   
   /* Apply the fixed input class */
   .rounded-md {
-    border-radius: 0.75rem; /* Adjust as needed */
+    border-radius: 1.75rem; /* Adjust as needed */
   }
   
   .appearance-none {
@@ -47,15 +47,15 @@
   }
   
   .border-gray-300 {
-    border-color: #4e3978; /* Adjust as needed */
+    border-color: #f0eff4 /* Adjust as needed */
   }
   
   .placeholder-gray-500::placeholder {
-    color: #786e87; /* Adjust as needed */
+    color:#9c9cb0; /* Adjust as needed */
   }
   
   .text-gray-900 {
-    color: #382d4f; /* Adjust as needed */
+    color: #050505; /* Adjust as needed */
     font-style: italic; /* Make the font italic */
   }
   
@@ -64,11 +64,11 @@
   }
   
   .focus\:ring-purple-500:focus {
-    box-shadow: 0 0 0 3px rgba(121, 75, 196, 0.5); /* Adjust as needed */
+    box-shadow: 1 1 1 3px rgba(5, 4, 5, 0.5); /* Adjust as needed */
   }
   
   .focus\:border-purple-500:focus {
-    border-color: #805ad5; /* Adjust as needed */
+    border-color: #615c9e; /* Adjust as needed */
   }
   
   .focus\:z-10:focus {
@@ -84,7 +84,7 @@
     max-width: 400px;
     margin: auto;
     padding: 20px;
-    border: 1px solid #1a212a;
+    border: 1px solid #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   

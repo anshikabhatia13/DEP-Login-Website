@@ -2,13 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #babdc2;;
+    background-color: #9290bc;
 
     padding: 0.5rem 4rem;
-    border-top-left-radius: 20px; /* Added border radius */
-    border-top-right-radius: 20px; /* Added border radius */
-    border-bottom-left-radius: 20px; /* Added border radius */
-    border-bottom-right-radius: 20px; /* Added border radius */
+    border-top-left-radius: 10px; /* Added border radius */
+    border-top-right-radius:10px; /* Added border radius */
+    border-bottom-left-radius:10px; /* Added border radius */
+    border-bottom-right-radius: 10px; /* Added border radius */
 }
 
 .gpt3__navbar-links_container a.nav-link {
@@ -28,8 +28,8 @@
 }
 
 .gpt3__navbar-links_logo img {
-    width: 80px; /* Reduced logo size */
-    height: 80px; /* Reduced logo size */
+    width: 100px; /* Reduced logo size */
+    height: 100px; /* Reduced logo size */
 }
 
 .gpt3__navbar-links_container {
@@ -39,11 +39,11 @@
 
 .gpt3__navbar-links_container a,
 .gpt3__navbar-links_container p {
-  color: #fff;
+  color:  #3c3484;  /*#3c3484*/
   font-family: var(--font-family);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 20px;
-  line-height: 35px;
+  line-height: 30px;
   text-transform: capitalize;
   margin-right: 1rem;
   text-decoration: none;
@@ -64,7 +64,7 @@
 }
 
 .gpt3__navbar-links_container a {
-  background-color: #726c6b; /* Different color for the "IIT Ropar" link */
+  background-color: #dad9e5; /* Different color for the "IIT Ropar" link */
 }
 .gpt3__navbar-sign {
     display: flex;
@@ -88,7 +88,7 @@
 .gpt3__navbar-sign button,
 .gpt3__navbar-menu_container button {
     padding: 0.5rem 1rem;
-    color: #fff;
+    color: #dad9e5;
     background: #FF4820;
     font-family: var(--font-family);
     font-weight: 500;

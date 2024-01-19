@@ -1,5 +1,13 @@
 /* header.css */
 
+.after-login-image {
+  
+  width: 33px; /* Adjust the width of the after-login image as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: -5px;
+  margin-left: 5px;
+}
+
 /* Center the entire content */
 .header-container {
   display: flex;
@@ -13,10 +21,11 @@
   max-width: 100%;
   /* Add some margin if needed */
   margin: 20px; /* Increased margin for a bit more spacing */
+  margin-bottom: -2px;
   /* Apply box shadow for a subtle lift effect */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   /* Apply border-radius for a rounded appearance */
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 /* Style the logo image size */
@@ -24,23 +33,23 @@
   width: 120px; /* Adjust the width as needed */
   height: 120px; /* Adjust the height as needed */
   /* Apply a subtle shadow to the image */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   /* Add some border-radius for a rounded appearance */
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 /* Style the heading */
 .header-heading {
   text-align: center;
-  font-size: 2rem; /* Increased font size for the heading */
-  color: #333; /* Darkened text color for a more professional look */
+  color: #3c3484; /* Darkened text color for a more professional look */
   margin-top: 10px; /* Small top margin for separation */
+  margin-bottom: -1px;
 }
 
 /* Style the paragraph */
 .header-paragraph {
   font-size: 1rem; /* 16px - Adjusted font size for better readability */
   text-align: center;
-  color: #666; /* Slightly darker text color for better contrast */
+  color: #9290bc; /* Slightly darker text color for better contrast */
   margin-top: 10px; /* Small top margin for separation */
 }
