@@ -3,14 +3,16 @@ import { verifyFields } from "../constants/formFields";
 import FormExtra from "./FormExtra";
 import FormAction from "./FormAction";
 import Input from "./Input";
+import { useNavigate } from 'react-router-dom';
 import './verify.css';
+import axios from 'axios';
 
 const fields=verifyFields;
 let fieldsState = {};
 fields.forEach(field=>fieldsState[field.id]='');
-
 export default function Login(){
     const [loginState,setLoginState]=useState(fieldsState);
+    const navigate = useNavigate(); 
 
     const handleChange=(e)=>{
         setLoginState({...loginState,[e.target.id]:e.target.value})
@@ -20,10 +22,28 @@ export default function Login(){
         e.preventDefault();
         authenticateUser();
     }
+    const transformedLoginState = {
+        email: loginState['email-address'],
+        otp: loginState['otp'],
+        // Add other properties if needed
+    };
 
     //Handle Login API Integration here
     const authenticateUser = () =>{
-
+        axios.post('http://localhost:5000/user/verify-otp',transformedLoginState)
+        .then((response)=>{
+            console.log(response);
+            //If the response is successful, redirect to the verify page
+            if(response.data.status==="SUCCESS"){
+                navigate('/home');
+            }
+            else{
+                // navigate('/');
+                //If the response is unsuccessful, display an error message
+                // setLoginError(true);
+            }
+        }
+        )
     }
 
     return(
@@ -52,7 +72,7 @@ export default function Login(){
 
         {/* <FormExtra/> */}
         
-        <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Confirm OTP" to="/home"/>   </div>
+        <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Confirm OTP"/>   </div>
         <FormExtra />
 
       </form>

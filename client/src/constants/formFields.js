@@ -15,11 +15,11 @@ const loginFields=[
 const verifyFields=[
     {
         labelText:"Enter OTP",
-        labelFor:"password",
-        id:"password",
-        name:"password",
-        type:"password",
-        autoComplete:"current-password",
+        labelFor:"otp",
+        id:"otp",
+        name:"otp",
+        type:"otp",
+        autoComplete:"off",
         isRequired:true,
         placeholder:"Enter OTP" 
       
