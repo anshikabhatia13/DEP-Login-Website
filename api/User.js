@@ -28,28 +28,7 @@ const transporter = createTransport({ //it will carry the email
     },
 });
 
-// const mailOptions = {
-//     from: 'dep.p03.2024@gmail.com',
-//     to: 'asadalam1021@gmail.com',
-//     subject: `verification email`,
-//     text: `Here is the otp to verify your account`
-// };
 
-// transporter.sendMail(mailOptions, function(error, info){
-//     if (error) {
-//         console.log(error);
-//     } else {
-//         console.log('Email sent: ' + info.response);
-//     }
-// });
-
-// let transporter = nodemailer.createTransport({
-//     service:"gmail",
-//     auth: {
-//         user: process.env.AUTH_EMAIL,
-//         pass: process.env.AUTH_PASS,
-//     }
-// })
 
 transporter.verify((error, success) => {
     if (error) {
@@ -62,91 +41,6 @@ transporter.verify((error, success) => {
 // check start
 
 
-// router.post("/signup", async (req, res) => {//this will handle all post requests to the signup path
-//     let { name, email, password, dateOfBirth } = req.body; //this is the body of the incoming request from the client
-//     name = name.trim();
-//     email = email.trim();
-//     password = password.trim();
-//     dateOfBirth = dateOfBirth.trim();
-
-//     // Check if email is already registered
-//     const existingUser = await User.findOne({ email });
-
-//     if (existingUser) {
-//         // Check if the existing user is already verified
-//         if (existingUser.verified) {
-//             res.json({
-//                 status: "FAILED",
-//                 message: "Email is already registered and verified.",
-//             });
-//         } else {
-//             res.json({
-//                 status: "FAILED",
-//                 message: "Email is already registered but not verified. Check inbox!",
-//             });
-//         }
-//     }
-//     else if (name === "" || email === "" || password === "" || dateOfBirth === "") {
-//         res.json({
-//             status: "FAILED",
-//             message: "Empty input field",
-//         });
-//     } else if (!/^[a-zA-Z ]*$/.test(name)) {
-//         res.json({
-//             status: "FAILED",
-//             message: "Invalid name entered",
-//         });
-//     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-//         res.json({
-//             status: "FAILED",
-//             message: "Invalid email entered",
-//         });
-//     } else if (!new Date(dateOfBirth).getTime()) {
-//         res.json({
-//             status: "FAILED",
-//             message: "Invalid date of birth entered",
-//         });
-//     } else if (password.length < 8) {
-//         res.json({
-//             status: "FAILED",
-//             message: "Password is too short",
-//         });
-//     } else {
-//         // Generate OTP
-//         const otp = generateOTP();
-
-//         // Hash the OTP before storing it in the database
-//         const saltRounds = 10;
-//         const hashedOtp = await bcrypt.hash(otp.toString(), saltRounds);
-
-//         // Store the hashed OTP in the user model
-//         const newUser = new User({
-//             name,
-//             email,
-//             password: hashedOtp, // Storing hashed OTP for verification
-//             dateOfBirth,
-//             verified: false,
-//         });
-
-//         newUser
-//             .save()
-//             .then((result) => {
-//                 //handle email verification
-//                 sendVerificationEmail(result, otp, res);
-//                 // res.json({
-//                 //     status: "SUCCESS",
-//                 //     message: "SignUp Successful! Check your email for OTP.",
-//                 //     data: result,
-//                 // });
-//             })
-//             .catch((err) => {
-//                 res.json({
-//                     status: "FAILED",
-//                     message: "An error occurred while saving user account!",
-//                 });
-//             });
-//     }
-// });//original function
 
 router.post("/signup", async (req, res) => {
     let { name, email, phone,address } = req.body;
@@ -164,7 +58,7 @@ router.post("/signup", async (req, res) => {
         if (existingUser.verified) {
             res.json({
                 status: "FAILED",
-                message: "Email is already registered and verified.",
+                message: "Email is already registered and verified",
             });
         } else {
             res.json({
@@ -172,7 +66,7 @@ router.post("/signup", async (req, res) => {
                 message: "Email is already registered but not verified. Check inbox!",
             });
         }
-    } else if (name === "" || email === "") {
+    } else if (name === "" || email === "" || phone === "" || address === "") {
         res.json({
             status: "FAILED",
             message: "Empty input field",
@@ -191,7 +85,7 @@ router.post("/signup", async (req, res) => {
 
     else {
         // Generate OTP
-        console.log(name, email , dateOfBirth);
+       
         const otp = generateOTP();
 
         // Store the OTP in the user model

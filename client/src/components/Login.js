@@ -30,19 +30,27 @@ export default function Login() {
     }
 
     // Handle Login API Integration here
-    const authenticateUser = () => {
+    const authenticateUser =async () => {
+
         // Make a post request to the backend
-        axios.post('http://localhost:5000/user/signin', transformedLoginState)
+        const response= await axios.post('http://localhost:5000/user/signin', transformedLoginState)
             .then((response) => {
                 // console.log(response);
                 // If the response is successful, redirect to the verify page
                 if (response.data.status === "PENDING") {
                     navigate('/verify');
+                    setTimeout(() => {
+                      alert("OTP sent to your email");
+                    }, 200); 
+                    //print on page that otp is sent
+
                 }
-                else {
+                else if(response.data.message === "Invalid Credentials entered!") {
                     // If the response is unsuccessful, display an error message
+                    alert("No such user exists. Register first")
                     setLoginError(true);
                 }
+
             }
             )
             .catch((error) => {

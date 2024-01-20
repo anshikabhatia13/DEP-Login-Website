@@ -27,33 +27,38 @@ export default function Signup() {
   };
 
   //handle Signup API Integration here
-  const createAccount = () => {
+  const createAccount = async () => {
     const transformedSignupState = {
       name: signupState['username'],
       email: signupState['email-address'],
       phone: signupState['phone-number'],
       address: signupState['address'],
-      // Add other properties if needed
     };
-  
+
     //make a post request to the backend
-    axios.post('http://localhost:5000/user/signup', transformedSignupState)
+    const response = await axios.post('http://localhost:5000/user/signup', transformedSignupState)
       .then((response) => {
         console.log(response);
-        if (response.status === 200) {
+        if (response.data.status === "PENDING") {
           navigate('/verify');
-        } else {
-          console.log(response.data); // Log the response data
-          // Check if the response indicates wrong OTP
-          if (response.data.status === "WRONG_OTP") {
-            // Redirect to the verify page for reentering OTP
-            navigate('/verify');
-            setError("Wrong OTP. Please reenter.");
-          } else {
-            // Redirect to login page for other errors
-            navigate('/login');
-            setError("An error occurred");
-          }
+          setTimeout(() => {
+            alert("OTP sent to your email");
+          }, 200);
+
+        } else if (response.data.message === "Email is already registered and verified") {
+          alert("Email is already registered");
+        }
+        else if (response.data.message === "Email is already registered but not verified. Check inbox!") {
+          alert("Email is already registered!");
+        }
+        else if (response.data.message === "Empty input field") {
+          alert("Fill all the details please");
+        }
+        else if (response.data.message === "Invalid name entered") {
+          alert("Invalid name");
+        }
+        else if (response.data.message === "Invalid email entered") {
+          alert("Invalid email");
         }
 
       })
@@ -63,7 +68,7 @@ export default function Signup() {
         navigate('/login');
       })
 
-
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -94,9 +99,7 @@ export default function Signup() {
         )}
 
       </div>
-
-
-
     </form>
-  )
-        }}
+  );
+}
+
