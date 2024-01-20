@@ -38,18 +38,21 @@
 
 .gpt3__navbar-links_container a,
 .gpt3__navbar-links_container p {
-    color:  #3c3484;  /*#3c3484*/
+    color:  #3c3484;  
     font-family: var(--font-family);
     font-weight: 600;
     font-size: 20px;
+    
     line-height: 30px;
     text-transform: capitalize;
-    margin-right: 0.3rem;
+    /* margin-right: 0.3rem; */
     text-decoration: none;
     padding: 0.5rem 0.5rem;
+    padding-left: 0.8px;
+    padding-right: 0.8px;
     border-radius: 8px;
     transition: background-color 0.3s ease;
-    background-color: #4c4fd1; /* Background color */
+    background-color: #dad9e5; /* Background color */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a lifted effect */
   }
 
@@ -80,7 +83,7 @@
     font-size: 23px; /* Reduced font size */
     line-height: 30px; /* Adjusted line height */
     text-transform: capitalize;
-    margin: 0 1rem;
+    margin: 0 1.2rem;
     cursor: pointer;
 }
 

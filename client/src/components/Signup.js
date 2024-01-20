@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { signupFields } from "../constants/formFields";
+import { useState } from 'react';
+import { signupFields } from "../constants/formFields"
 import FormAction from "./FormAction";
 import Input from "./Input";
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import FormExtra from "./FormExtra";
 
@@ -22,9 +22,9 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(signupState);
-    createAccount();
-  };
+    console.log(signupState)
+    createAccount()
+  }
 
   //handle Signup API Integration here
   const createAccount = async () => {
