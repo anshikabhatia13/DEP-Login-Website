@@ -5,7 +5,9 @@ export default function FormAction({
     action = 'submit',
     text,
     to // new prop to specify the target page
-}) {
+}) 
+
+{
     const navigate = useNavigate();
 
     const handleClick = () => {

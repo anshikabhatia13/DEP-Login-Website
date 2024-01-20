@@ -16,6 +16,7 @@ body {
     flex-direction:  column; 
     margin:  0;
     align-items: center;
+    background-color: beige;
 }
 
 a {

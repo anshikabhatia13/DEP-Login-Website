@@ -191,6 +191,7 @@ router.post("/signup", async (req, res) => {
 
     else {
         // Generate OTP
+        console.log(name, email , dateOfBirth);
         const otp = generateOTP();
 
         // Store the OTP in the user model

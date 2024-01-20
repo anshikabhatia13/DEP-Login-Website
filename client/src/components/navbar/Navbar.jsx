@@ -14,9 +14,15 @@ const Navbar = () => {
           <img src={logo} alt="Logo" />
         </div>
         <div className="gpt3__navbar-links_container">
+<<<<<<< Updated upstream
           <Link to="/">Home</Link>
           <a href="https://www.iitrpr.ac.in/" target="_blank" rel="noopener noreferrer">IIT Ropar</a>
           <a href="https://drive.google.com/file/d/1L9_gwFgDBD6d6LQ7wrZG8WRyIl1ccbkH/view?usp=sharing" target="_blank" rel="noopener noreferrer">Mobile App</a>
+=======
+          <p><a href="#home">Home</a></p>
+          <p><a href="https://www.iitrpr.ac.in/">IIT Ropar</a></p>
+          <p><a href="https://www.iitrpr.ac.in/">Mobile App</a></p>
+>>>>>>> Stashed changes
           
         </div>
       </div>
