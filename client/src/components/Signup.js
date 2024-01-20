@@ -4,6 +4,7 @@ import FormAction from "./FormAction";
 import Input from "./Input";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import FormExtra from "./FormExtra";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -12,6 +13,7 @@ fields.forEach(field => fieldsState[field.id] = '');
 
 export default function Signup() {
   const [signupState, setSignupState] = useState(fieldsState);
+  const [error, setError] = useState(null); // State for error message
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
 
@@ -40,11 +42,25 @@ export default function Signup() {
         console.log(response);
         if (response.status === 200) {
           navigate('/verify');
+        } else {
+          console.log(response.data); // Log the response data
+          // Check if the response indicates wrong OTP
+          if (response.data.status === "WRONG_OTP") {
+            // Redirect to the verify page for reentering OTP
+            navigate('/verify');
+            setError("Wrong OTP. Please reenter.");
+          } else {
+            // Redirect to login page for other errors
+            navigate('/login');
+            setError("An error occurred");
+          }
         }
 
       })
       .catch((error) => {
         console.log(error);
+        setError("An error occurred");
+        navigate('/login');
       })
 
   }
@@ -70,6 +86,12 @@ export default function Signup() {
           )
         }
         <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Send OTP" /></div>
+        <FormExtra />
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
 
       </div>
 

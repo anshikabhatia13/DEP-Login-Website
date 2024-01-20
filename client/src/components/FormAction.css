@@ -7,17 +7,23 @@
 }
 
 .button {
+    color: white;
+    font-size: 18px;
+    text-transform: capitalize;
     width: 230px; /* Adjust the width as needed */
     height: 30px; /* Adjust the height as needed */
     border: 1px  transparent;
     text-align: center;
-    font-size: 18px;
-    color: white;
-    background-color: #3c3484;
-    cursor: pointer;
+    text-decoration: none;
     border-radius: 20px;
     transition: background-color 0.3s ease;
+    background-color: #3c3484;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a lifted effect */
+    cursor: pointer;
     align-items: center;
+}
+.button:hover {
+    background-color:#545470 /* Your desired hover color */;
 }
 
 

@@ -13,7 +13,7 @@ fields.forEach(field => fieldsState[field.id] = '');
 
 export default function Login() {
     const [loginState, setLoginState] = useState(fieldsState);
-    // const [loginError, setLoginError] = useState(false); // New state variable
+    const [loginError, setLoginError] = useState(false); // New state variable
     const navigate = useNavigate(); 
     const transformedLoginState = {
         email: loginState['email-address'],
@@ -71,9 +71,9 @@ export default function Login() {
                 )}
             </div>
 
-            <FormExtra />
+            
             <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Send OTP" /></div>
-
+            <FormExtra />
         </form>
     );
 }
