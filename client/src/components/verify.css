@@ -4,3 +4,14 @@
     align-items: center;
     margin-top: 20px; /* Adjust as needed */
 }
+
+  .resend-otp-link {
+    color: #007bff; /* Change the color as needed */
+    text-decoration: underline; /* Add underline to indicate it's a link */
+    cursor: pointer; /* Change cursor on hover to indicate it's clickable */
+    /* Add any other styles you want for the Resend OTP link */
+  }
+  
+  .resend-otp-link:hover {
+    text-decoration: none; /* Remove underline on hover if desired */
+  }

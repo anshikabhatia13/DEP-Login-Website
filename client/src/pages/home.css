@@ -1,15 +1,17 @@
 .gpt3__header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: rgb(234, 220, 245);
     background: url('../iit.jpg') center/cover no-repeat; /* Add your image URL */
     padding-left: 5%;
 }
 .buttoncenter {
     display: flex;
+    flex-direction: col;
     justify-content: center;
     align-items: center;
-    margin-top: 200px; /* Adjust as needed */
+    /* margin-top: 2px;  */
+    margin-bottom: 25px;
 }
 .gpt3__header-content {
     flex: 1;

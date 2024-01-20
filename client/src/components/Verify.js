@@ -80,7 +80,11 @@ export default function Login() {
             {/* <FormExtra/> */}
 
             <div className='buttoncenter'><FormAction handleSubmit={handleSubmit} text="Confirm OTP" />   </div>
-
+            <div className='buttoncenter'>
+  <a className="resend-otp-link" href="#" onClick={handleSubmit}>
+    Resend OTP
+  </a>
+</div>
             <FormExtra />
         </form>
     )

@@ -13,10 +13,6 @@ const Home = () => (
 
       
     </div>
-
-    <div className="gpt3__header-image">
-      <img src={ai} />
-    </div>
     <div className='buttoncenter'><FormAction text="LogOut" to ="/" /></div>
   </div>
 );
