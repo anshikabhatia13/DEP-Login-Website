@@ -5,6 +5,12 @@
     background: url('../iit.jpg') center/cover no-repeat; /* Add your image URL */
     padding-left: 5%;
 }
+.buttoncenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px; /* Adjust as needed */
+}
 .gpt3__header-content {
     flex: 1;
     display: flex;
@@ -167,6 +173,7 @@
         line-height: 24px;
     }
 }
+
 
 @media screen and (max-width: 490px) {
     .gpt3__header-content h1 {

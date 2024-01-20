@@ -2,7 +2,7 @@ import React from 'react';
 
 import ai from '.././logo1.png';
 import './home.css';
-
+import FormAction from '../components/FormAction';
 const Home = () => (
   <div className="gpt3__header section__padding" id="home">
     <div className="gpt3__header-content">
@@ -16,8 +16,8 @@ const Home = () => (
 
     <div className="gpt3__header-image">
       <img src={ai} />
-      
     </div>
+    <div className='buttoncenter'><FormAction text="LogOut" to ="/" /></div>
   </div>
 );
 

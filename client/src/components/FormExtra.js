@@ -15,11 +15,7 @@ export default function FormExtra() {
                 </label>
             </div> */}
 
-            <div className="text-sm-container">
-                <a href="#" className="text-link">
-                    Resend OTP
-                </a>
-            </div>
+          
         </div>
     );
 }
