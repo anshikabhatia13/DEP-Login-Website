@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 // import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route ,Navigate} from 'react-router-dom';
 import { Navbar} from './components';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
@@ -25,11 +25,12 @@ function App () {
     <div className="max-w-md w-full space-y-8">
      
         <Routes>
+          {/* <Switch> */}
             <Route path="/" element={<LoginPage/>} />
             <Route path="/signup" element={<SignupPage/>} />
             <Route path="/verify" element={<VerifyPage/>} />
             <Route path="/home" element={<HomePage/>} />
-
+            {/* </Switch> */}
         </Routes>
       
   </div>

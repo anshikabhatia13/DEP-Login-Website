@@ -5,6 +5,7 @@ import FormExtra from "./FormExtra";
 import Input from "./Input";
 import { useNavigate } from 'react-router-dom';
 import './login.css';
+import axios from 'axios'; // Import axios for making API requests
 
 const fields = loginFields;
 let fieldsState = {};
@@ -25,10 +26,19 @@ export default function Login() {
 
     // Handle Login API Integration here
     const authenticateUser = () => {
-        // Redirect to 'verify' page
-        navigate('/verify');
-    }
-
+        axios.post('http://localhost:5000/signin', loginState)
+            .then((response) => {
+                if (response.data.status === 'SUCCESS') {
+                    // Redirect to 'verify' page
+                    navigate('/verify');
+                }
+            })
+            .catch((error) => {
+                console.error('Error during login:', error);
+                // Handle the error
+            });
+    };
+    
     return (
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="-space-y-px">

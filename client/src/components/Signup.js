@@ -4,6 +4,7 @@ import FormAction from "./FormAction";
 import Input from "./Input";
 import FormExtra from "./FormExtra";
 import './signup.css';
+import axios from 'axios';
 const fields=signupFields;
 let fieldsState={};
 
@@ -20,10 +21,18 @@ export default function Signup(){
     createAccount()
   }
 
-  //handle Signup API Integration here
-  const createAccount=()=>{
-
-  }
+  
+const createAccount = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/signup', signupState);
+      console.log(response.data);
+      // Handle success or redirect to the next page
+    } catch (error) {
+      console.error('Error creating account:', error);
+      // Handle error
+    }
+  };
+  
 
     return(
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
