@@ -20,14 +20,15 @@ export default function Signup() {
 
   const handleChange = (e) => setSignupState({ ...signupState, [e.target.id]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(signupState)
-    createAccount()
+    await createAccount()
   }
 
   //handle Signup API Integration here
   const createAccount = async () => {
+    // alert("Sending OTP");
     const transformedSignupState = {
       name: signupState['username'],
       email: signupState['email-address'],
@@ -40,6 +41,7 @@ export default function Signup() {
       .then((response) => {
         console.log(response);
         if (response.data.status === "PENDING") {
+          
           navigate('/verify');
           setTimeout(() => {
             alert("OTP sent to your email");
